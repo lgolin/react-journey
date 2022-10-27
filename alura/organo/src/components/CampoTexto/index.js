@@ -1,11 +1,24 @@
 import './CampoTexto.css';
 
-const CampoTexto = ({ label, placeholder, obrigatorio }) => {
-  const placeholderMod = `${placeholder}...`;
+const CampoTexto = (props) => {
+  const placeholderMod = `${props.placeholder}...`;
+
+  // let inputChange = 'Guilherme';
+
+  function onInputChange(e) {
+    props.aoAlterado(e.target.value);
+  }
+
   return (
     <div className="campo-texto">
-      <label>{label}</label>
-      <input required={obrigatorio} type="text" placeholder={placeholderMod} />
+      <label>{props.label}</label>
+      <input
+        value={props.valor}
+        onChange={onInputChange}
+        required={props.obrigatorio}
+        type="text"
+        placeholder={placeholderMod}
+      />
     </div>
   );
 };
